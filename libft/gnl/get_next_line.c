@@ -6,7 +6,7 @@
 /*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 21:29:58 by r-afonso          #+#    #+#             */
-/*   Updated: 2023/10/24 21:19:12 by r-afonso         ###   ########.fr       */
+/*   Updated: 2023/10/25 16:38:03 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	*get_read(int fd, char *save)
 			return (NULL);
 		}
 		*(buff + read_bytes) = '\0';
-		save = ft_strjoin(save, buff);
+		save = ft_strjoin_gnl(save, buff);
 	}
 	free(buff);
 	return (save);

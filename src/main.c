@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/18 16:01:15 by r-afonso          #+#    #+#             */
-/*   Updated: 2023/10/25 16:40:16 by r-afonso         ###   ########.fr       */
+/*   Created: 2023/10/25 12:54:02 by r-afonso          #+#    #+#             */
+/*   Updated: 2023/10/25 19:41:21 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "../include/push_swap.h"
 
-# include "get_next_line.h"
-# include <stdarg.h>
-# include <unistd.h>
-# include <stdlib.h>
-
-int		ft_printf(const char *str, ...);
-int		convert_to_hexa(char *result, unsigned long number);
-int		utils(char *str, char type, unsigned long number);
-int		ft_toupper(int c);
-int		ft_tolower(int c);
-void	*ft_calloc(size_t nmemb, size_t size);
-
-#endif
+int	main(int argv, char **argc)
+{
+	if (argv == 1 && argc)
+	{
+		ft_printf("\n");
+		return(1);
+	}
+	if(!handle_validation(argc))
+	{
+		ft_printf("Error");
+		return (1);
+	}
+	return (1);
+}

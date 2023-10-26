@@ -12,7 +12,7 @@ FILES_LIB = ft_isalpha  ft_isdigit  ft_isalnum  ft_isascii  ft_isprint  \
 		ft_strtrim  ft_split  ft_itoa  ft_strmapi  ft_striteri  \
 		ft_putchar_fd  ft_putstr_fd  ft_putendl_fd  ft_putnbr_fd
 FILES_GNL = get_next_line get_next_line_utils
-FILES_PRINTF = ft_itoa ft_printf printf_utils
+FILES_PRINTF = ft_printf printf_utils
 
 SRC_DIR_LIB = src/
 SRC_DIR_GNL = gnl/

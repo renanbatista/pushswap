@@ -4,27 +4,30 @@ CFLAGS = -Wall -Wextra -Werror
 RM = rm -f
 INC = -I./include
 SRC_DIR = ./src
+SRC_DIR_LIB= ./libft
+LIB = ./libft/libft.a
 SRCS_DIR_PRINTF = ./src/printf
-FILES = client minitalk_utils
-FILES_PRINTF = ft_itoa ft_printf printf_utils
+FILES = main
 
-OBJS = $(addprefix $(SRC_DIR)/, $(addsuffix .o, $(FILES_C)))
-OBJS_PRINTF = $(addprefix $(SRCS_DIR_PRINTF)/, $(addsuffix .o, $(FILES_PRINTF)))
+OBJS = $(addprefix $(SRC_DIR)/, $(addsuffix .o, $(FILES)))
 
 all: $(NAME)
 
 %.o: %.c
-	$(CC) $(INC) -c $< -o $@
+	$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
-$(NAME): $(OBJS) $(OBJS_PRINTF)
-	$(CC) $(OBJS) $(OBJS_PRINTF) $(CFLAGS) $(INC) -o $(NAME)
+$(NAME): $(OBJS)
+	@$(MAKE) -c $(SRC_DIR_LIB) --no-print-directory
+	$(CC) $(OBJS) $(OBJS_PRINTF) $(LIB) $(CFLAGS) $(INC) -o $(NAME)
 
 bonus: all
 
 clean:
+	$(MAKE) clean -C $(SRC_DIR_LIB)
 	$(RM) $(OBJS)
 
 fclean: clean
+	$(MAKE) fclean -C $(SRC_DIR_LIB)
 	$(RM) $(NAME)
 
 re: fclean all

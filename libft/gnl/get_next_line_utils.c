@@ -6,38 +6,13 @@
 /*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 21:29:34 by r-afonso          #+#    #+#             */
-/*   Updated: 2023/10/24 21:19:02 by r-afonso         ###   ########.fr       */
+/*   Updated: 2023/10/25 16:38:03 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/get_next_line.h"
 
-size_t	ft_strlen(char *str)
-{
-	size_t	size;
-
-	size = 0;
-	while (*(str + size))
-		size++;
-	return (size);
-}
-
-char	*ft_strchr(char *s, int c)
-{
-	if (!s)
-		return (NULL);
-	while (*(s))
-	{
-		if (*(s) == c)
-			return ((char *)s);
-		s++;
-	}
-	if (*(s) == c)
-		return ((char *)s);
-	return (NULL);
-}
-
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin_gnl(char *s1, char *s2)
 {
 	size_t	index;
 	size_t	sub_index;
