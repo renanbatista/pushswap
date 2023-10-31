@@ -6,7 +6,7 @@
 /*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 19:47:31 by r-afonso          #+#    #+#             */
-/*   Updated: 2023/10/24 21:18:44 by r-afonso         ###   ########.fr       */
+/*   Updated: 2023/10/30 15:31:19 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,41 +60,4 @@ int	utils(char *str, char type, unsigned long number)
 		return (1);
 	}
 	return (0);
-}
-
-int	ft_toupper(int c)
-{
-	if (c >= 97 && c <= 122)
-		return (c - 32);
-	return (c);
-}
-
-int	ft_tolower(int c)
-{
-	if (c >= 65 && c <= 90)
-		return (c + 32);
-	return (c);
-}
-
-void	*ft_calloc(size_t nmemb, size_t size)
-{
-	char	*p;
-	void	*allocate;
-	int		n;
-
-	if ((size * nmemb != 0) && (nmemb * size) / size != nmemb)
-		return (NULL);
-	allocate = malloc(nmemb * size);
-	if (allocate != NULL)
-	{
-		n = nmemb * size;
-		p = (char *)allocate;
-		while (n > 0)
-		{
-			*(p) = 0;
-			p++;
-			n--;
-		}
-	}
-	return (allocate);
 }
