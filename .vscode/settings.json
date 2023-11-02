@@ -1,0 +1,16 @@
+{
+	"files.associations": {
+		"so_long.h": "c",
+		"stdarg.h": "c",
+		"mlx42_int.h": "c",
+		"mlx42.h": "c",
+		"unistd.h": "c",
+		"string.h": "c",
+		"random": "c",
+		"cstdint": "c"
+	},
+	"lldb.displayFormat": "auto",
+	"lldb.showDisassembly": "never",
+	"lldb.dereferencePointers": true,
+	"lldb.consoleMode": "commands",
+}
