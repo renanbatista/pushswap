@@ -6,7 +6,7 @@
 /*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 12:54:02 by r-afonso          #+#    #+#             */
-/*   Updated: 2023/11/01 20:45:33 by r-afonso         ###   ########.fr       */
+/*   Updated: 2023/11/02 18:33:30 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,14 @@ int	main(int argc, char **argv)
 	
 	stack_b = ft_calloc(sizeof(int), argc);
 	stack_a = ft_calloc(sizeof(int), argc);
-	if (!handle_validation(argc, argv, stack_a))
+	if (!handle_validation(argc, argv, &stack_a))
 	{
 		ft_printf("Error\n");
 		return (1);
 	}
 	for(int index = 0; index < argc - 1; index++)
 	{
-		printf("%d", stack_a[index]);
+		printf("\n%d", stack_a[index]);
 	}
 	return (1);
 }
