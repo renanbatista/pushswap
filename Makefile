@@ -7,7 +7,7 @@ SRC_DIR = ./src
 SRC_DIR_LIB= ./libft
 LIB = ./libft/libft.a
 SRCS_DIR_PRINTF = ./src/printf
-FILES = main validate_entry
+FILES = main validate_entry moviments
 
 OBJS = $(addprefix $(SRC_DIR)/, $(addsuffix .o, $(FILES)))
 
