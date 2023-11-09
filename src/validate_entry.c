@@ -3,7 +3,7 @@
 static int	check_is_number(char *str)
 {
 	while(*str)
-		if(ft_isdigit(*str))
+		if(ft_isdigit(*str) || (*str == '-' && ft_isdigit(*(str + 1))))
 			str++;
 		else
 		 	return (0);
