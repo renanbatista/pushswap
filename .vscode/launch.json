@@ -7,7 +7,7 @@
 			"type": "lldb",
 			"request": "launch",
 			"program": "${workspaceFolder}/push_swap",
-			"args": ["-59", "2", "1", "3", "0"],
+			"args": ["3", "2", "1"],
 		}
 	]
 }

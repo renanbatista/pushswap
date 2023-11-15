@@ -6,7 +6,7 @@
 /*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 12:49:34 by r-afonso          #+#    #+#             */
-/*   Updated: 2023/11/08 22:32:57 by r-afonso         ###   ########.fr       */
+/*   Updated: 2023/11/15 00:22:38 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 typedef struct s_stack
 {
-	int	*vector;
+	int	*vec;
 	int	top;
 }		t_stack;
 

@@ -6,7 +6,7 @@
 /*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 20:24:24 by r-afonso          #+#    #+#             */
-/*   Updated: 2023/11/08 22:05:05 by r-afonso         ###   ########.fr       */
+/*   Updated: 2023/11/15 00:36:10 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ int	exec_swap(t_stack *stack)
 
 	if (stack->top >= 1)
 	{
-		value = stack->vector[stack->top];
-		stack->vector[stack->top] = stack->vector[stack->top -1];
-		stack->vector[stack->top - 1] = value;
+		value = stack->vec[0];
+		stack->vec[0] = stack->vec[1];
+		stack->vec[1] = value;
 		return (1);
 	}
 	return (0);
@@ -35,8 +35,8 @@ int	exec_push(t_stack *stack_one, t_stack *stack_two)
 		count = stack_one->top + 1;
 		while (count--, count >= 0)
 		{
-			stack_two->top++;	
-			stack_two->vector[stack_two->top] = stack_one->vector[stack_one->top];
+			stack_two->top++;
+			stack_two->vec[stack_two->top] = stack_one->vec[stack_one->top];
 			stack_one->top--;
 			return (1);
 		}
@@ -48,16 +48,14 @@ int	exec_rotate(t_stack *stack)
 {
 	int	swap;
 	int	count;
-	// FIXME: 
-	count = stack->top + 1;
-	if(stack->top > 0)
+
+	count = -1;
+	swap = stack->vec[0];
+	if (stack->top >= -1)
 	{
-		swap = stack->vector[stack->top];
-		while(count--, count >= 0)
-		{
-			stack->vector[count + 1] = stack->vector[count];
-		}
-		stack->vector[stack->top] = swap;
+		while (++count < stack->top)
+			stack->vec[count] = stack->vec[count + 1];
+		stack->vec[stack->top] = swap;
 		return (1);
 	}
 	return (0);
@@ -65,7 +63,17 @@ int	exec_rotate(t_stack *stack)
 
 int	exec_rotate_reverse(t_stack *stack)
 {
-	if(stack)
+	int	swap;
+	int	count;
+
+	count = stack->top + 1;
+	swap = stack->vec[stack->top];
+	if (stack->top >= -1)
+	{
+		while (--count >= 0)
+			stack->vec[count] = stack->vec[count - 1];
+		stack->vec[0] = swap;
 		return (1);
-	return (1);
+	}
+	return (0);
 }

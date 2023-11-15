@@ -29,7 +29,7 @@ int handle_validation(int argc, char ** argv, t_stack *stack_a)
 	int	count;
 	int	size_vector;
 
-	stack_a->vector = ft_calloc(sizeof(int), argc);
+	stack_a->vec = ft_calloc(sizeof(int), argc);
 	if(!stack_a)
 		return (0);
 	size_vector = argc -1;
@@ -37,11 +37,11 @@ int handle_validation(int argc, char ** argv, t_stack *stack_a)
 	while (count++, argv[count + 1])
 	{
 		if(check_is_number(argv[count + 1]))
-			stack_a->vector[count] = ft_atoi(argv[count + 1]);
+			stack_a->vec[count] = ft_atoi(argv[count + 1]);
 		else
 		 	return (0);
 	}
-	if(!check_repeat_number(stack_a->vector, size_vector))
+	if(!check_repeat_number(stack_a->vec, size_vector))
 		return(0);
 	return (1);
 }
