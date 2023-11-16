@@ -3,11 +3,12 @@
 	"configurations": [
 		{
 			"preLaunchTask": "clang build",
+			"console": "externalTerminal",
 			"name": "Launch",
 			"type": "lldb",
 			"request": "launch",
 			"program": "${workspaceFolder}/push_swap",
-			"args": ["3", "2", "1"],
+			"args": ["4", "3", "2", "-1", "-30"],
 		}
 	]
 }

@@ -1,138 +1,102 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   operators_exec.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/07 20:24:24 by r-afonso          #+#    #+#             */
+/*   Updated: 2023/11/15 21:15:01 by r-afonso         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/push_swap.h"
 
-int	verify_r(t_stack *stack_a, t_stack *stack_b, char *action)
+int	exec_swap(t_stack *stack)
 {
-	if (!ft_strncmp("ra", action, 2))
+	int	value;
+
+	if (stack->top >= 1)
 	{
-		if (exec_rotate(stack_a) && ft_printf("ra"))
-		{
-			ft_printf("\n");
-			return (1);
-		}
+		value = stack->vec[0];
+		stack->vec[0] = stack->vec[1];
+		stack->vec[1] = value;
+		return (1);
 	}
-	else if (!ft_strncmp("rb", action, 2))
+	return (0);
+}
+
+int	exec_push(t_stack *stack_one, t_stack *stack_two)
+{
+	int	count;
+
+	if (stack_one->top != -1)
 	{
-		if (exec_rotate(stack_b) && ft_printf("rb"))
+		count = stack_one->top + 1;
+		while (count--, count >= 0)
 		{
-			ft_printf("\n");
-			return (1);
-		}
-	}
-	else if (!ft_strncmp("rr", action, 2))
-	{
-		if (exec_rotate(stack_a) && exec_rotate(stack_b) && ft_printf("rr"))
-		{
-			ft_printf("\n");
+			stack_two->top++;
+			stack_two->vec[stack_two->top] = stack_one->vec[stack_one->top];
+			stack_one->top--;
 			return (1);
 		}
 	}
 	return (0);
 }
 
-int	verify_rr(t_stack *stack_a, t_stack *stack_b, char *action)
+int	exec_rotate(t_stack *stack)
 {
-	if (!ft_strncmp("rra", action, 3))
+	int	swap;
+	int	count;
+
+	count = -1;
+	swap = stack->vec[0];
+	if (stack->top >= -1)
 	{
-		if (exec_rotate_reverse(stack_a) && ft_printf("rra"))
-		{
-			ft_printf("\n");
-			return (1);
-		}
-	}
-	else if (!ft_strncmp("rrb", action, 3))
-	{
-		if (exec_rotate_reverse(stack_b) && ft_printf("rrb"))
-		{
-			ft_printf("\n");
-			return (1);
-		}
-	}
-	else if (!ft_strncmp("rrr", action, 3))
-	{
-		if (exec_rotate_reverse(stack_a) && exec_rotate_reverse(stack_b)
-			&& ft_printf("\nrrr"))
-		{
-			ft_printf("\n");
-			return (1);
-		}
+		while (++count < stack->top)
+			stack->vec[count] = stack->vec[count + 1];
+		stack->vec[stack->top] = swap;
+		return (1);
 	}
 	return (0);
 }
 
-int	verify_s(t_stack *stack_a, t_stack *stack_b, char *action)
+int	exec_rotate_reverse(t_stack *stack)
 {
-	if (!ft_strncmp("sa", action, 2))
+	int	swap;
+	int	count;
+
+	count = stack->top + 1;
+	swap = stack->vec[stack->top];
+	if (stack->top >= -1)
 	{
-		if (exec_swap(stack_a) && ft_printf("sa"))
-		{
-			ft_printf("\n");
-			return (1);
-		}
-	}
-	else if (!ft_strncmp("sb", action, 2))
-	{
-		if (exec_swap(stack_b) && ft_printf("sb"))
-		{
-			ft_printf("\n");
-			return (1);
-		}
-	}
-	else if (!ft_strncmp("ss", action, 2))
-	{
-		if (exec_swap(stack_a) && exec_swap(stack_b) && ft_printf("ss"))
-		{
-			ft_printf("\n");
-			return (1);
-		}
+		while (--count >= 0)
+			stack->vec[count] = stack->vec[count - 1];
+		stack->vec[0] = swap;
+		return (1);
 	}
 	return (0);
 }
 
-int	verify_p(t_stack *stack_a, t_stack *stack_b, char *action)
+void	sort_stack_sub(int *stack_sub, int size)
 {
-	if (!ft_strncmp("pa", action, 2))
-	{
-		if (exec_push(stack_b, stack_a) && ft_printf("\npa"))
-		{
-			ft_printf("\n");
-			return (1);
-		}
-	}
-	else if (!ft_strncmp("pb", action, 2))
-	{
-		if (exec_push(stack_a, stack_b) && ft_printf("\npb"))
-		{
-			ft_printf("\n");
-			return (1);
-		}
-	}
-	return (0);
-}
+	int	count_sub;
+	int	swap;
+	int	count;
 
-int	handle_moviments(char *action, t_stack *stack_a, t_stack *stack_b)
-{
-	if (!ft_strncmp("sa", action, 2) || !ft_strncmp("sb", action, 2)
-		|| !ft_strncmp("ss", action, 2))
+	count = -1;
+	while (++count <= size)
 	{
-		if (verify_s(stack_a, stack_b, action))
-			return (1);
+		count_sub = count + 1;
+		while (count_sub <= size)
+		{
+			if (stack_sub[count] > stack_sub[count_sub])
+			{
+				swap = stack_sub[count_sub];
+				stack_sub[count_sub] = stack_sub[count];
+				stack_sub[count] = swap;
+			}
+			count_sub++;
+		}
 	}
-	else if (!ft_strncmp("pa", action, 2) || !ft_strncmp("pb", action, 2))
-	{
-		if (verify_p(stack_a, stack_b, action))
-			return (1);
-	}
-	else if (!ft_strncmp("ra", action, 2) || !ft_strncmp("rb", action, 2)
-			|| (!ft_strncmp("rr", action, 2) && ft_strlen(action) == 2))
-	{
-		if (verify_r(stack_a, stack_b, action))
-			return (1);
-	}
-	else if (!ft_strncmp("rra", action, 3) || !ft_strncmp("rrb", action, 3)
-			|| !ft_strncmp("rrr", action, 3))
-	{
-		if (verify_rr(stack_a, stack_b, action))
-			return (1);
-	}
-	return (0);
 }
