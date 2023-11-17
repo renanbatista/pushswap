@@ -6,7 +6,7 @@
 /*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 12:54:02 by r-afonso          #+#    #+#             */
-/*   Updated: 2023/11/15 21:35:48 by r-afonso         ###   ########.fr       */
+/*   Updated: 2023/11/16 16:00:26 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ void	make_free(t_stack *stack_a, t_stack *stack_b, int *stack_ordened)
 {
 	free(stack_a->vec);
 	free(stack_b->vec);
-	free(stack_ordened);
 	free(stack_a);
 	free(stack_b);
+	free(stack_ordened);
 }
 int	check_number_of_values(t_stack *stack_a, t_stack *stack_b)
 {
