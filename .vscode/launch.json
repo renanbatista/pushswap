@@ -3,7 +3,6 @@
 	"configurations": [
 		{
 			"preLaunchTask": "clang build",
-			"console": "externalTerminal",
 			"name": "Launch",
 			"type": "lldb",
 			"request": "launch",

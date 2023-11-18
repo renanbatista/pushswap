@@ -6,7 +6,7 @@
 /*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 12:54:02 by r-afonso          #+#    #+#             */
-/*   Updated: 2023/11/16 16:00:26 by r-afonso         ###   ########.fr       */
+/*   Updated: 2023/11/17 23:27:46 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,70 +18,34 @@
 // TODO: write tests.
 
 #include "../include/push_swap.h"
-
-t_stack	*start_stack(int argc, int top)
-{
-	t_stack	*stack;
-
-	stack = ft_calloc(sizeof(t_stack), 1);
-	stack->vec = ft_calloc(sizeof(int), argc);
-	stack->top = top;
-	return (stack);
-}
-
-void	make_free(t_stack *stack_a, t_stack *stack_b, int *stack_ordened)
-{
-	free(stack_a->vec);
-	free(stack_b->vec);
-	free(stack_a);
-	free(stack_b);
-	free(stack_ordened);
-}
-int	check_number_of_values(t_stack *stack_a, t_stack *stack_b)
-{
-	if (stack_a->top == 1 && stack_a->vec[0] < stack_a->vec[1])
-		return (1);
-	else if (stack_a->top == 1 && stack_a->vec[0] >= stack_a->vec[1])
-	{
-		handle_operators("sa", stack_a, stack_b);
-		return (1);
-	}
-	else if (stack_a->top == 2)
-	{
-		if (stack_a->vec[0] > stack_a->vec[1]
-			&& stack_a->vec[0] > stack_a->vec[2])
-			handle_operators("ra", stack_a, stack_b);
-		if (stack_a->vec[1] > stack_a->vec[0]
-			&& stack_a->vec[1] > stack_a->vec[2])
-			handle_operators("rra", stack_a, stack_b);
-		if (stack_a->vec[0] > stack_a->vec[1])
-			handle_operators("sa", stack_a, stack_b);
-		return (1);
-	}
-	return (0);
-}
+#include <stdio.h>
 
 int	main(int argc, char **argv)
 {
-	t_stack	*stack_a;
-	t_stack	*stack_b;
-	int		*stack_sub;
+	t_stack	*s_stack_a;
+	t_stack	*s_stack_b;
+	int	*iv_stack_sub;
 
-	stack_a = start_stack(argc, argc - 2);
-	stack_b = start_stack(argc, -1);
-	stack_sub = ft_calloc(sizeof(int), argc);
-	if (!handle_validation(argc, argv, stack_a, stack_sub))
+	s_stack_a = start_stack(argc, argc - 2);
+	s_stack_b = start_stack(argc, -1);
+	iv_stack_sub = ft_calloc(sizeof(int), 1);
+	if (!handle_validation(argc, argv, s_stack_a, iv_stack_sub))
 	{
 		ft_printf("Error\n");
 		return (1);
 	}
-	if (!stack_a)
+	if (!s_stack_a)
 		return (0);
-	sort_stack_sub(stack_sub, stack_a->top);
-	if(!handle_sort(stack_a, stack_a, stack_sub))
-	{
-		make_free(stack_a, stack_b, stack_sub);
-		return (0);
+	search_target_pos(s_stack_a, iv_stack_sub);
+	// if(!handle_sort(stack_a, stack_a, stack_sub))
+	// {
+	// 	make_free(stack_a, stack_b, stack_sub);
+	// 	return (0);
+	// }
+	for (int index = 0; index <= s_stack_a->i_top; index++)
+	{		
+		printf("\nindex: %d", s_stack_a->iv_numbers[index]);
+		printf(", targe_position: %d", s_stack_a->iv_target_position_a[index]);
 	}
 	// for (int index = 0; index <= stack_a->top; index++)
 	// 	printf("\n%d", stack_sub[index]);
@@ -92,6 +56,6 @@ int	main(int argc, char **argv)
 	// printf("\nStack B:");
 	// for(int index = 0; index <= stack_b->top; index++)
 	// 	printf("\n%d", stack_b->vector[index]);
-	make_free(stack_a, stack_b, stack_sub);
+	make_free(s_stack_a, s_stack_b, iv_stack_sub);
 	return (1);
 }

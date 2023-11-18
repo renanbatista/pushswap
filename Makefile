@@ -7,7 +7,7 @@ SRC_DIR = ./src
 SRC_DIR_LIB= ./libft
 LIB = ./libft/libft.a
 SRCS_DIR_PRINTF = ./src/printf
-FILES = main validate_entry operators operators_exec
+FILES = main validate_entry operators prepar_to_start handle_operators handle_sort
 
 OBJS = $(addprefix $(SRC_DIR)/, $(addsuffix .o, $(FILES)))
 

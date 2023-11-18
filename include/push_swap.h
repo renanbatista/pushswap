@@ -6,7 +6,7 @@
 /*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 12:49:34 by r-afonso          #+#    #+#             */
-/*   Updated: 2023/11/16 15:12:14 by r-afonso         ###   ########.fr       */
+/*   Updated: 2023/11/17 23:08:08 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,15 @@
 
 typedef struct s_stack
 {
-	int	*vec;
-	int	top;
+	int	*iv_numbers;
+	int	i_top;
+	int	*iv_target_position_a;
+	int	i_cost;
 }		t_stack;
 
+t_stack	*start_stack(int argc, int top);
+void	make_free(t_stack *stack_a, t_stack *stack_b, int *stack_ordened);
+int	check_number_of_values(t_stack *stack_a, t_stack *stack_b);
 int		handle_validation(int argc, char **argv, t_stack *stack_a,
 			int *stack_ordened);
 void	sort_stack(t_stack *a, t_stack *b);
@@ -34,5 +39,6 @@ int		operators_handle(char *action, t_stack *stack_a, t_stack *stack_b);
 void	sort_stack_sub(int *stack_sub, int size);
 int		handle_sort(t_stack *stack_a, t_stack *stack_b, int *stack_sub);
 int		handle_operators(char *action, t_stack *stack_a, t_stack *stack_b);
+void	search_target_pos(t_stack *stack_a, int *stack_sub);
 
 #endif

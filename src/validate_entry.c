@@ -25,28 +25,28 @@ static int	check_repeat_number(int *stack_a, int size_vector)
 	return (1);
 }
 
-int	handle_validation(int argc, char **argv, t_stack *stack_a,
-		int *stack_sub)
+int	handle_validation(int i_argc, char **cv_argv, t_stack *s_stack_a,
+		int *s_stack_sub)
 {
-	int	count;
-	int	size_vector;
+	int	i_count;
+	int	i_size_vector;
 
-	stack_a->vec = ft_calloc(sizeof(int), argc);
-	if (!stack_a)
+	s_stack_a->iv_numbers = ft_calloc(sizeof(int), i_argc);
+	if (!s_stack_a)
 		return (0);
-	size_vector = argc - 1;
-	count = -1;
-	while (count++, argv[count + 1])
+	i_size_vector = i_argc - 1;
+	i_count = -1;
+	while (i_count++, cv_argv[i_count + 1])
 	{
-		if (check_is_number(argv[count + 1]))
+		if (check_is_number(cv_argv[i_count + 1]))
 		{
-			stack_a->vec[count] = ft_atoi(argv[count + 1]);
-			stack_sub[count] = stack_a->vec[count];
+			s_stack_a->iv_numbers[i_count] = ft_atoi(cv_argv[i_count + 1]);
+			s_stack_sub[i_count] = s_stack_a->iv_numbers[i_count];
 		}
 		else
 			return (0);
 	}
-	if (!check_repeat_number(stack_a->vec, size_vector))
+	if (!check_repeat_number(s_stack_a->iv_numbers, i_size_vector))
 		return (0);
 	return (1);
 }
