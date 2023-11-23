@@ -6,7 +6,7 @@
 /*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 12:49:34 by r-afonso          #+#    #+#             */
-/*   Updated: 2023/11/21 22:31:36 by r-afonso         ###   ########.fr       */
+/*   Updated: 2023/11/22 20:40:10 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@
 #ifndef PUSHSWAP_H
 # define PUSHSWAP_H
 
-typedef struct s_stack
+typedef struct stack
 {
-	int	*iv_numbers;
-	int	i_top;
-	int	*iv_target_position_a;
-	int	*iv_cost_a;
-	int	*iv_cost_b;
+	int	*numbers;
+	int	top_position;
+	int	*target_position_a;
+	int	*cost_move_a;
+	int	*cost_move_b;
 }		t_stack;
 
 t_stack	*start_stack(int argc, int top);
@@ -36,11 +36,11 @@ int		exec_rotate_reverse(t_stack *stack);
 int		exec_rotate(t_stack *stack);
 int		exec_push(t_stack *stack_one, t_stack *stack_two);
 int		exec_swap(t_stack *stack);
-int		operators_handle(char *action, t_stack *stack_a, t_stack *stack_b);
+int		operator_handle(char *action, t_stack *stack_a, t_stack *stack_b);
 void	sort_stack_sub(int *stack_sub, int size);
 int		handle_sort(t_stack *stack_a, t_stack *stack_b);
 int		handle_operators(char *action, t_stack *stack_a, t_stack *stack_b);
 void	search_target_pos(t_stack *stack_a, int *stack_sub);
-int		handle_cost_sort(t_stack *s_stack);
+int		handle_cost_move(t_stack *stack_a, t_stack *stack_b);
 
 #endif
