@@ -1,41 +1,72 @@
 #include "../include/push_swap.h"
 
-int	check_is_order(t_stack *s_stack)
+int	check_is_order(t_stack *stack_a, t_stack *stack_b)
 {
-	int	i_index;
+	int	index;
 
-	i_index = -1;
-	while (++i_index <= s_stack->i_top)
-		if (i_index != s_stack->iv_target_position_a[i_index])
+	index = -1;
+	if (stack_b->top_position != -1)
+		return (0);
+	while (++index <= stack_a->top_position)
+		if (index != stack_a->target_position_a[index])
 			return (0);
 	return (1);
 }
 
-void	move_middle_to_b(t_stack *s_stack_a, t_stack *s_stack_b)
+void	first_move_to_b(t_stack *stack_a, t_stack *stack_b)
 {
-	int	i_index;
-	int	i_top_temp;
-	int	i_middle_number;
+	int	index;
+	int	max_index;
 
-	i_index = -1;
-	i_top_temp = s_stack_a.i_top;
-	i_middle_number = s_stack_a.iv_numbers[i_top_temp/2];
-	while(++i_index <=  i_top_temp/ 2)
+	index = 0;
+	max_index = (stack_a->top_position + 1) / 2;
+	while (index <= max_index && stack_a->top_position > 2)
 	{
-		if(s_stack_a.iv_numbers[i_index] <= i_middle_number)
-			handle_operators("pb", s_stack_a, s_stack_b);
-		s_stack_b.iv_numbers[i_index] = s_stack_a.iv_numbers[i_index];
-
+		if (stack_a->target_position_a[0] <= max_index)
+		{
+			handle_operators("pb", stack_a, stack_b);
+			index++;
+		}
+		else
+			handle_operators("ra", stack_a, stack_b);
 	}
+	index = -1;
+	while (stack_a->top_position > 2)
+		handle_operators("pb", stack_a, stack_b);
 }
-
-int	handle_sort(t_stack *s_stack_a, t_stack *s_stack_b, int *iv_stack_sub)
+void	handle_move(int index, t_stack *stack_a, t_stack *stack_b)
 {
-	// int i_midlle_value;
-	if(s_stack_b && iv_stack_sub)
-		return (1);
-	if(check_is_order(s_stack_a))
-		return(1);
-	return (0);
-
+	if (stack_b->cost_move_b[index] > 0)
+		while (stack_b->cost_move_b[index] > 0 && --stack_b->cost_move_b[index])
+			handle_operators("rb", stack_a, stack_b);
+	else
+		while (stack_b->cost_move_b[index] < 0 && ++stack_b->cost_move_b[index] != 0)
+			handle_operators("rrb", stack_a, stack_b);
+	if (stack_b->cost_move_a[index] > 0)
+		while (stack_b->cost_move_a[index] > 0 && --stack_b->cost_move_a[index])
+			handle_operators("ra", stack_a, stack_b);
+	else
+		while (stack_b->cost_move_a[index] < 0 && ++stack_b->cost_move_a[index] != 0)
+			handle_operators("rra", stack_a, stack_b);
+	handle_operators("pa", stack_a, stack_b);
+	
 }
+
+int	handle_sort(t_stack *stack_a, t_stack *stack_b)
+{
+	int	index;
+	int	index_move;
+
+	if (check_is_order(stack_a, stack_b))
+		return (1);
+	first_move_to_b(stack_a, stack_b);
+	handle_order_three_values(stack_a, stack_b);
+	index = -1;
+	while (stack_b->top_position != -1)
+	{
+		index_move = check_index_move(stack_a, stack_b);
+		handle_move(index, stack_a, stack_b);
+	}
+	return (1);
+}
+// TODO: ao final preciso checar se nao preciso dar rotate ou inverse rotate para colocar o index 0 no começo
