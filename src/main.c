@@ -6,7 +6,7 @@
 /*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 12:54:02 by r-afonso          #+#    #+#             */
-/*   Updated: 2023/11/17 23:27:46 by r-afonso         ###   ########.fr       */
+/*   Updated: 2023/11/22 15:32:01 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,44 +18,49 @@
 // TODO: write tests.
 
 #include "../include/push_swap.h"
-#include <stdio.h>
 
 int	main(int argc, char **argv)
 {
-	t_stack	*s_stack_a;
-	t_stack	*s_stack_b;
-	int	*iv_stack_sub;
+	t_stack	*stack_a;
+	t_stack	*stack_b;
+	int		*stack_sub;
 
-	s_stack_a = start_stack(argc, argc - 2);
-	s_stack_b = start_stack(argc, -1);
-	iv_stack_sub = ft_calloc(sizeof(int), 1);
-	if (!handle_validation(argc, argv, s_stack_a, iv_stack_sub))
+	stack_a = start_stack(argc, argc - 2);
+	stack_b = start_stack(argc, -1);
+	stack_sub = ft_calloc(sizeof(int), argc - 2);
+	
+	if (!handle_validation(argc, argv, stack_a, stack_sub))
 	{
 		ft_printf("Error\n");
 		return (1);
 	}
-	if (!s_stack_a)
+	if (!stack_a)
 		return (0);
-	search_target_pos(s_stack_a, iv_stack_sub);
-	// if(!handle_sort(stack_a, stack_a, stack_sub))
-	// {
-	// 	make_free(stack_a, stack_b, stack_sub);
-	// 	return (0);
-	// }
-	for (int index = 0; index <= s_stack_a->i_top; index++)
-	{		
-		printf("\nindex: %d", s_stack_a->iv_numbers[index]);
-		printf(", targe_position: %d", s_stack_a->iv_target_position_a[index]);
+	search_target_pos(stack_a, stack_sub);
+	if (!handle_sort(stack_a, stack_b))
+	{
+		make_free(stack_a, stack_b);
+		return (0);
 	}
-	// for (int index = 0; index <= stack_a->top; index++)
-	// 	printf("\n%d", stack_sub[index]);
-	// check_number_of_values(stack_a, stack_b);
-	// printf("\nStack A:");
-	// for (int index = 0; index <= stack_a->top; index++)
-	// 	printf("\n%d", stack_a->vec[index]);
-	// printf("\nStack B:");
-	// for(int index = 0; index <= stack_b->top; index++)
-	// 	printf("\n%d", stack_b->vector[index]);
-	make_free(s_stack_a, s_stack_b, iv_stack_sub);
+	// handle_operators("pb", stack_a, stack_b);
+	ft_printf("\nStack A");
+	ft_printf(", Top: %d", stack_a->top_position);
+	for (int index = 0; index <= stack_a->top_position; index++)
+	{
+		ft_printf("\nindex: %d", stack_a->numbers[index]);
+		ft_printf(", targe_position: %d", stack_a->target_position_a[index]);
+		ft_printf(", cost A: %d", stack_a->cost_move_a[index]);
+		ft_printf(", cost B: %d", stack_a->cost_move_b[index]);
+	}
+	ft_printf("\n\nStack B");
+	ft_printf(", Top: %d", stack_b->top_position);
+	for (int index = 0; index <= stack_b->top_position; index++)
+	{
+		ft_printf(" \nindex: %d", stack_b->numbers[index]);
+		ft_printf(", targe_position: %d", stack_b->target_position_a[index]);
+		ft_printf(", cost A: %d", stack_b->cost_move_a[index]);
+		ft_printf(", cost B: %d", stack_b->cost_move_b[index]);
+	}
+	make_free(stack_a, stack_b);
 	return (1);
 }

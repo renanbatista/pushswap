@@ -92,7 +92,7 @@ int	verify_p(t_stack *stack_a, t_stack *stack_b, char *action)
 {
 	if (!ft_strncmp("pa", action, 2))
 	{
-		if (exec_push(stack_b, stack_a) && ft_printf("\npa"))
+		if (exec_push(stack_b, stack_a) && ft_printf("pa"))
 		{
 			ft_printf("\n");
 			return (1);
@@ -100,7 +100,7 @@ int	verify_p(t_stack *stack_a, t_stack *stack_b, char *action)
 	}
 	else if (!ft_strncmp("pb", action, 2))
 	{
-		if (exec_push(stack_a, stack_b) && ft_printf("\npb"))
+		if (exec_push(stack_a, stack_b) && ft_printf("pb"))
 		{
 			ft_printf("\n");
 			return (1);
