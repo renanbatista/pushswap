@@ -1,6 +1,7 @@
 NAME = push_swap
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g
+# CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -g
 RM = rm -f
 INC = -I./include
 SRC_DIR = ./src

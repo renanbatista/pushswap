@@ -6,7 +6,7 @@
 /*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 12:54:02 by r-afonso          #+#    #+#             */
-/*   Updated: 2023/11/22 15:32:01 by r-afonso         ###   ########.fr       */
+/*   Updated: 2023/11/25 02:35:39 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,21 +42,20 @@ int	main(int argc, char **argv)
 		make_free(stack_a, stack_b);
 		return (0);
 	}
-	// handle_operators("pb", stack_a, stack_b);
 	ft_printf("\nStack A");
 	ft_printf(", Top: %d", stack_a->top_position);
 	for (int index = 0; index <= stack_a->top_position; index++)
 	{
-		ft_printf("\nindex: %d", stack_a->numbers[index]);
+		ft_printf("\nIndex: %d", index);
+		ft_printf(", number: %d", stack_a->numbers[index]);
 		ft_printf(", targe_position: %d", stack_a->target_position_a[index]);
-		ft_printf(", cost A: %d", stack_a->cost_move_a[index]);
-		ft_printf(", cost B: %d", stack_a->cost_move_b[index]);
 	}
 	ft_printf("\n\nStack B");
 	ft_printf(", Top: %d", stack_b->top_position);
 	for (int index = 0; index <= stack_b->top_position; index++)
 	{
-		ft_printf(" \nindex: %d", stack_b->numbers[index]);
+		ft_printf(" \nIndex: %d", index);
+		ft_printf(", number: %d", stack_b->numbers[index]);
 		ft_printf(", targe_position: %d", stack_b->target_position_a[index]);
 		ft_printf(", cost A: %d", stack_b->cost_move_a[index]);
 		ft_printf(", cost B: %d", stack_b->cost_move_b[index]);
