@@ -6,7 +6,7 @@
 /*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 21:06:48 by r-afonso          #+#    #+#             */
-/*   Updated: 2023/11/23 20:37:50 by r-afonso         ###   ########.fr       */
+/*   Updated: 2023/11/25 20:01:41 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,15 @@ t_stack	*start_stack(int argc, int top)
 
 	stack = ft_calloc(sizeof(t_stack), 1);
 	stack->numbers = ft_calloc(sizeof(int), argc);
-	stack->target_position_a= ft_calloc(sizeof(int), argc);
+	stack->numbers[top + 1] = 0;
+	stack->target_position_a = ft_calloc(sizeof(int), argc);
 	stack->cost_move_a = ft_calloc(sizeof(int), argc);
 	stack->cost_move_b = ft_calloc(sizeof(int), argc);
 	stack->top_position = top;
 	return (stack);
 }
 
-void	make_free(t_stack *stack_a, t_stack *stack_b)
+void	make_free(t_stack *stack_a, t_stack *stack_b, int *stack_sub)
 {
 	free(stack_a->numbers);
 	free(stack_b->numbers);
@@ -37,13 +38,14 @@ void	make_free(t_stack *stack_a, t_stack *stack_b)
 	free(stack_b->cost_move_b);
 	free(stack_a);
 	free(stack_b);
+	free(stack_sub);
 }
 
 int	handle_order_three_values(t_stack *stack_a, t_stack *stack_b)
 {
 	if (stack_a->top_position == 1 && stack_a->numbers[0] < stack_a->numbers[1])
 		return (1);
-	else if (stack_a->top_position == 1
+	else if (stack_a->top_position == 1 \
 			&& stack_a->numbers[0] >= stack_a->numbers[1])
 	{
 		handle_operators("sa", stack_a, stack_b);
@@ -101,9 +103,10 @@ void	search_target_pos(t_stack *stack_a, int *stack_sub)
 		while (++count_sub <= stack_a->top_position)
 		{
 			if (stack_a->numbers[count] == stack_sub[count_sub])
+			{
 				stack_a->target_position_a[count] = count_sub;
+				break ;
+			}
 		}
 	}
-	free(stack_sub);
-	// while ()
 }
