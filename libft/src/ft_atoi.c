@@ -6,14 +6,14 @@
 /*   By: r-afonso < r-afonso@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 15:35:31 by r-afonso          #+#    #+#             */
-/*   Updated: 2023/05/26 15:20:32 by r-afonso         ###   ########.fr       */
+/*   Updated: 2023/11/26 02:11:13 by r-afonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_atoi(const char *nptr)
+long	ft_atoi(const char *nptr)
 {
-	int	signal;
-	int	sun;
+	int			signal;
+	long int	sun;
 
 	sun = 0;
 	signal = 1;
