@@ -1,7 +1,6 @@
 NAME = push_swap
 CC = cc
-# CFLAGS = -Wall -Wextra -Werror -g
-CFLAGS = -g
+CFLAGS = -Wall -Wextra -Werror
 RM = rm -f
 INC = -I./include
 SRC_DIR = ./src
@@ -10,6 +9,7 @@ LIB = ./libft/libft.a
 SRCS_DIR_PRINTF = ./src/printf
 FILES = main validate_entry operators prepar_to_start \
 		handle_operators handle_cost_move handle_sort \
+		handle_cost_move_two handle_sort_five
 
 OBJS = $(addprefix $(SRC_DIR)/, $(addsuffix .o, $(FILES)))
 
