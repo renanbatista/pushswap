@@ -6,7 +6,6 @@ INC = -I./include
 SRC_DIR = ./src
 SRC_DIR_LIB= ./libft
 LIB = ./libft/libft.a
-SRCS_DIR_PRINTF = ./src/printf
 FILES = main validate_entry operators prepar_to_start \
 		handle_operators handle_cost_move handle_sort \
 		handle_cost_move_two handle_sort_five
